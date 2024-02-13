@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Moment3</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Moment3.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+</head>
+<body>
+    
+        <!--Nav start-->
+        <nav class="navbar">
+            <a asp-controller="Home" asp-action="Index"  id="logo">BOOKLY</a>
+            <ul class="navMenu">
+                <li class="navItem"> <a asp-controller="Home" asp-action="Index" class="navLink">Startsida</a></li>
+                <li class="navItem"><a asp-controller="Book" asp-action="Index" class="navLink">Böcker</a></li>
+                <li class="navItem"><a asp-controller="Category" asp-action="Index" class="navLink">Kategorier</a></li>
+                  <li class="navItem"><a asp-controller="Author" asp-action="Index" class="navLink">Författare</a></li>
+                    <li class="navItem"><a asp-controller="Loan" asp-action="Index" class="navLink">Lån</a></li>
+            
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+           <!-- Kolla om det är startsidan, och om det är det, visa startsidans header -->
+    @if (ViewContext.RouteData.Values["controller"].ToString().ToLower() == "home" && 
+         ViewContext.RouteData.Values["action"].ToString().ToLower() == "index")
+    {
+        @Html.Partial("_HeaderHome")
+    }
+    else
+    {
+        @Html.Partial("_HeaderPage")
+    }
+    <div class="container p-3">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+<footer>
+    <p>Lösning av Viola Falk moment 3</p>
+</footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="content">
+    <div class="intro">
+    <h2>Mina favoriter</h2>
+    <div class="centerLine"></div>
+    <p>Här är mina 3 favorit böcker för tillfället. Böckerna hämtas från databasen</p>
+    </div>
+    <div class="test">
+        <div class="row">
+            @foreach (var book in Model)
+            {
+                <div class="col-md-4 col-12">
+                 <a  asp-controller="Book" asp-action="Details" asp-route-id="@book.Id"><img src="~/images/@book.ImageName" width="200px" alt="@book.Title"></a>   
+                    <p><strong>@book.Title</strong> </p>
+                 
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

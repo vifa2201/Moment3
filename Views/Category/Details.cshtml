@@ -1,0 +1,41 @@
+@model Moment3.Models.CategoryModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Kategori:         @Html.DisplayFor(model => model.Name) </h1>
+
+<div>
+
+    <hr />
+
+    </dl>
+</div>
+<div>
+      <a asp-action="Edit" class="btn btn-danger" asp-route-id="@Model?.Id">Ändra</a> |
+    <a asp-action="Index" class="btn btn-standard">Tillbaka till lista</a>
+</div>
+
+<div class="mt-4">
+  <h4>Böcker i kategorin: @Model.Name</h4>
+      <hr />
+
+
+            @foreach (var book in Model.BookModels)
+            {
+                   <div class="col-md-6 mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/images/@book.ImageName" class="img-fluid" width="100px" alt="">
+                </div>
+                <div class="col-md-8">
+                    <h5>@book.Title</h5>
+                    <p>@book.Description</p>
+                    <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id" class="">Mer info om boken</a>
+                </div>
+            </div>
+        </div>
+    
+            }
+</div>

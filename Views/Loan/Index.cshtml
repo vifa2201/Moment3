@@ -1,0 +1,47 @@
+@model IEnumerable<Moment3.Models.LoanModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Boklån</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-standard">Låna bok</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Book)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanDate)
+            </td>
+            <td>
+               <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-change"><i class="fas fa-pencil-alt"></i> Redigera</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-standard">Detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash"></i> Radera</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

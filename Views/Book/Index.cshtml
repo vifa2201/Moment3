@@ -1,0 +1,88 @@
+@model IEnumerable<Moment3.Models.BookModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Böcker</h1>
+  
+
+@using (Html.BeginForm("Index", "Book", FormMethod.Get))
+{
+    <div class="search-container">
+        <input type="text" name="searchString" placeholder="Sök efter titel eller beskrivning" class="search-input">
+        <button type="submit" class="search-button"><i class="fas fa-search"></i> Sök</button>
+    </div>
+}
+
+
+
+  <a asp-action="Create" class=" btn btn-standard m-5"><i class="fas fa-plus"></i> Lägg till ny bok</a>
+<div class="">
+    <div class="row">
+        @foreach (var item in Model) {
+            <div class="col-md-3 col-6 text-center">
+                <a asp-action="Details" asp-route-id="@item.Id">
+                    <img src="images/@Html.DisplayFor(modelItem => item.ImageName)" class="bookImg" width="200px" height="300px" alt="">
+                </a>
+                <p><strong>@Html.DisplayFor(modelItem => item.Title)</strong></p>
+            </div>
+        }
+    </div>
+</div>
+
+@* <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishDate)
+            </td>
+            <td>
+                <img src="images/@Html.DisplayFor(modelItem => item.ImageName)" alt="">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@
+

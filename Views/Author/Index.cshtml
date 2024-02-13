@@ -1,0 +1,36 @@
+@model IEnumerable<Moment3.Models.AuthorModel>
+   
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Författare</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-standard"><i class="fas fa-plus"></i>Skapa ny</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-change"><i class="fas fa-pencil-alt"></i> Ändra</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-standard">Detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash"></i> Radera</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
